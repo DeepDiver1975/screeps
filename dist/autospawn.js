@@ -8,7 +8,8 @@
  */
 
  function spawn(harvesters, role) {
-    if(harvesters.length < 6) {
+    const limit = Game.creeps.length / 3
+    if(harvesters.length < limit) {
         var newName = role + '-' + Game.time;
         console.log('Spawning new ' + role + ': ' + newName);
         Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName,
