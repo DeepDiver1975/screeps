@@ -7,6 +7,15 @@
  * mod.thing == 'a thing'; // true
  */
 
+ function spawn(harvesters, role) {
+    if(harvesters.length < 6) {
+        var newName = role + '-' + Game.time;
+        console.log('Spawning new ' + role + ': ' + newName);
+        Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName,
+            {memory: {role: role}});
+    }
+ }
+
 module.exports.popControl = function() {
     for(var name in Memory.creeps) {
         if(!Game.creeps[name]) {
@@ -16,12 +25,11 @@ module.exports.popControl = function() {
     }
     
     var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
-    console.log('Harvesters: ' + harvesters.length);
+    var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
+    var controllers = _.filter(Game.creeps, (creep) => creep.memory.role == 'controller');
+    console.log('Population: ' + harvesters.length + ' H - ' + builders.length + ' B - ' + controllers.length + ' C');
 
-    if(harvesters.length < 6) {
-        var newName = 'Harvester' + Game.time;
-        console.log('Spawning new harvester: ' + newName);
-        Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName,
-            {memory: {role: 'harvester'}});
-    }
+    spawn(harvesters, 'harvester')
+    spawn(builders, 'builder')
+    spawn(controllers, 'controller')
 }

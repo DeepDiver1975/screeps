@@ -5,7 +5,6 @@ var autospawn = require('autospawn');
 
 module.exports.loop = function () {
 
-    console.log('buuh')
     autospawn.popControl();
 
     for(var name in Game.creeps) {
