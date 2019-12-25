@@ -22,7 +22,7 @@ var roleBuilder = {
 	    }
 	    else {
 			var sources = creep.room.find(FIND_SOURCES);
-			const index = Math.floor(Math.random() * sources.length)
+			const index = 0
             if(creep.harvest(sources[index]) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(sources[index], {visualizePathStyle: {stroke: '#ffaa00'}});
             }
