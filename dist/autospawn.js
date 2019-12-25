@@ -24,7 +24,10 @@ module.exports.popControl = function() {
             console.log('Clearing non-existing creep memory:', name);
         }
     }
-    
+    const pop = _.keys(Game.creeps).length
+    if (pop > 20) {
+        return
+    }
     var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
     var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
     var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
