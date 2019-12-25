@@ -4,7 +4,7 @@ var roleHarvester = {
     run: function(creep) {
 	    if(creep.store.getFreeCapacity() > 0) {
             var sources = creep.room.find(FIND_SOURCES);
-            if (!creep.memory.source_index) {
+            if (_.isUndefined(creep.memory.source_index)) {
                 creep.memory.source_index = Math.floor(Math.random() * sources.length)
                 creep.say('🔄 harvesting source ' + creep.memory.source_index);
             }
