@@ -13,7 +13,7 @@ module.exports.run = function(spawnName) {
     }
 
     // build roads to the controller
-    var chemin = Game.spawns[spawnName].pos.findPathTo(Room.controller.pos);
+    var chemin = Game.spawns[spawnName].pos.findPathTo(Game.spawns[spawnName].room.controller.pos);
     for (var i = 0; i < chemin.length; i++) 
     {
         Game.spawns[spawnName].room.createConstructionSite(chemin[i].x,chemin[i].y, STRUCTURE_ROAD);
