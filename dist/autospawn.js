@@ -12,7 +12,7 @@
     if(harvesters.length <= limit) {
         var newName = role + '-' + Game.time;
         console.log('Spawning new ' + role + ': ' + newName);
-        Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName,
+        Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE,MOVE], newName,
             {memory: {role: role}});
     }
  }
