@@ -1,3 +1,5 @@
+var util = require('util')
+
 var roleUpgrader = {
 
     /** @param {Creep} creep **/
@@ -19,7 +21,7 @@ var roleUpgrader = {
         }
         else {
             var sources = creep.room.find(FIND_SOURCES);
-			const index = 0
+            const index = util.getCreepsSource()
             if(creep.harvest(sources[index]) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(sources[index], {visualizePathStyle: {stroke: '#ffaa00'}});
             }
