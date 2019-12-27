@@ -7,8 +7,7 @@
  * mod.thing == 'a thing'; // true
  */
 
- function spawn(harvesters, role) {
-    const limit = _.keys(Game.creeps).length / 3
+ function spawn(harvesters, role, limit) {
     if(harvesters.length <= limit) {
         var newName = role + '-' + Game.time;
         console.log('Spawning new ' + role + ': ' + newName);
@@ -33,7 +32,7 @@ module.exports.popControl = function() {
     var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
     console.log('Population: ' + harvesters.length + ' H - ' + builders.length + ' B - ' + upgraders.length + ' U');
 
-    spawn(harvesters, 'harvester')
-    spawn(builders, 'builder')
-    spawn(upgraders, 'upgrader')
+    spawn(harvesters, 'harvester', pop / 4)
+    spawn(builders, 'builder', pop / 2)
+    spawn(upgraders, 'upgrader', pop/4)
 }
