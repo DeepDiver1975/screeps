@@ -12,6 +12,9 @@ module.exports.run = function(spawnName) {
     if (sites.length > 10) {
         return
     }
+    if (!Memory.roads) {
+        Memory.roads = {}
+    }
     var sources = Game.spawns[spawnName].room.find(FIND_SOURCES);
     for (var j = 0; j < sources.length; j++)
     {
