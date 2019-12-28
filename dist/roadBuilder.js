@@ -10,17 +10,25 @@ module.exports.run = function(spawnName) {
     // only have 10 road sites max
     const sites = Game.spawns[spawnName].room.find(FIND_MY_CONSTRUCTION_SITES);
     if (sites.length > 10) {
-        console.log(sites.length + ' sites under construction ....')
         return
     }
     var sources = Game.spawns[spawnName].room.find(FIND_SOURCES);
     for (var j = 0; j < sources.length; j++)
     {
         // spawn <-> sources
-        var chemin = Game.spawns[spawnName].pos.findPathTo(sources[j].pos);
-        buildRoad(spawnName, chemin)
+        var key = sources[j]+'-'+spawnName
+        if (!Memory.roads[key]) {
+            const chemin = Game.spawns[spawnName].pos.findPathTo(sources[j].pos);
+            Memory.roads[key] = chemin
+        }
+        buildRoad(spawnName, Memory.roads[key])
+
         // controller <-> sources
-        var chemin = Game.spawns[spawnName].room.controller.pos.findPathTo(sources[j].pos);
-        buildRoad(spawnName, chemin)
+        key = sources[j]+'-controller'
+        if (!Memory.roads[key]) {
+            var chemin = Game.spawns[spawnName].room.controller.pos.findPathTo(sources[j].pos);
+            Memory.roads[key] = chemin
+        }
+        buildRoad(spawnName, Memory.roads[key])
     }
 }
