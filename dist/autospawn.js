@@ -32,7 +32,7 @@ module.exports.popControl = function() {
     var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
     console.log('Population: ' + harvesters.length + ' H - ' + builders.length + ' B - ' + upgraders.length + ' U');
 
-    spawn(harvesters, 'harvester', pop / 4)
-    spawn(builders, 'builder', pop / 2)
-    spawn(upgraders, 'upgrader', pop/4)
+    spawn(harvesters, 'harvester', pop / 3)
+    spawn(builders, 'builder', pop / 3)
+    spawn(upgraders, 'upgrader', pop / 3)
 }
