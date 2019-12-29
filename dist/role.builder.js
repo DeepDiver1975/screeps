@@ -23,11 +23,10 @@ var roleBuilder = {
 			} else {
 				var percentage = 0.0003;
 				var target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
-					filter: (s) => s.structureType == STRUCTURE_WALL &&
+					filter: (s) => (s.structureType === STRUCTURE_WALL || s.structureType === STRUCTURE_ROAD) &&
 					s.hits / s.hitsMax < percentage
 				});
 				if (!target == 0) {
-					creep.say('🚧 repairing ' + target);
 					if (creep.repair(target) == ERR_NOT_IN_RANGE) {
 						creep.moveTo(target);
 					}
