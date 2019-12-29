@@ -20,6 +20,18 @@ var roleBuilder = {
                 if(creep.build(closestContructionSite) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(closestContructionSite, {visualizePathStyle: {stroke: '#ffffff'}});
                 }
+			} else {
+				var percentage = 0.0003;
+				var target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
+					filter: (s) => s.structureType == STRUCTURE_WALL &&
+					s.hits / s.hitsMax < percentage
+				});
+				if (!target == 0) {
+					creep.say('🚧 repairing ' + target);
+					if (creep.repair(target) == ERR_NOT_IN_RANGE) {
+						creep.moveTo(target);
+					}
+				}
 			}
 	    }
 	    else {
