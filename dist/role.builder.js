@@ -27,6 +27,7 @@ var roleBuilder = {
 					s.hits / s.hitsMax < percentage
 				});
 				if (!target == 0) {
+					console.log('Repairing ' + target)
 					if (creep.repair(target) == ERR_NOT_IN_RANGE) {
 						creep.moveTo(target);
 					}
