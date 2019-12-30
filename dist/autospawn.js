@@ -30,9 +30,11 @@ module.exports.popControl = function() {
     var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
     var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
     var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
-    console.log('Population: ' + harvesters.length + ' H - ' + builders.length + ' B - ' + upgraders.length + ' U');
+    var repairers = _.filter(Game.creeps, (creep) => creep.memory.role == 'repairer');
+    console.log('Population: ' + harvesters.length + ' H - ' + builders.length + ' B - ' + upgraders.length + ' U - ' + repairers.length + ' R');
 
-    spawn(harvesters, 'harvester', pop / 3)
-    spawn(builders, 'builder', pop / 3)
-    spawn(upgraders, 'upgrader', pop / 3)
+    spawn(harvesters, 'harvester', 5)
+    spawn(builders, 'builder', 4)
+    spawn(upgraders, 'upgrader', 4)
+    spawn(repairers, 'repairer', 2)
 }
