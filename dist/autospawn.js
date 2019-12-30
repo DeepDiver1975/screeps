@@ -8,7 +8,7 @@
  */
 
  function spawn(harvesters, role, limit) {
-    if(harvesters.length <= limit) {
+    if(harvesters.length < limit) {
         var newName = role + '-' + Game.time;
         const ret = Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE,WORK,CARRY,MOVE], newName, {memory: {role: role}});
         if (ret === 0) {
