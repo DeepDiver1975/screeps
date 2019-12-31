@@ -5,11 +5,11 @@ var roleHarvester = {
     /** @param {Creep} creep **/
     run: function(creep) {
 	    if(creep.store.getFreeCapacity() > 0) {
-            // TODO: search for tombstones as well
+            // search for tombstones as well
             const nextTombstone = creep.pos.findClosestByRange(FIND_TOMBSTONES)
             if (nextTombstone) {
                 console.log('Tombstone to get energy from: ' + JSON.stringify(nextTombstone))
-                if(creep.withdraw(nextTombstone) == ERR_NOT_IN_RANGE) {
+                if(creep.withdraw(nextTombstone, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(nextTombstone, {visualizePathStyle: {stroke: '#000000'}});
                 }
             } else {
