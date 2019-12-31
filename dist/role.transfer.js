@@ -6,15 +6,25 @@ var roleHarvester = {
     run: function(creep) {
 	    if(creep.store.getFreeCapacity() > 0) {
             // TODO: search for tombstones as well
-            var closestStorage = creep.pos.findClosestByRange(FIND_STRUCTURES, {
-                filter: (structure) => {
-                    return (structure.structureType == STRUCTURE_CONTAINER ||
-                        structure.structureType == STRUCTURE_STORAGE)
+            const nextTombstone = creep.pos.findClosestByRange(FIND_TOMBSTONES)
+            if (nextTombstone) {
+                console.log('Tombstone to get energy from: ' + JSON.stringify(nextTombstone))
+                if(creep.withdraw(nextTombstone) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(nextTombstone, {visualizePathStyle: {stroke: '#000000'}});
                 }
-            });
-
-            if(creep.withdraw(closestStorage) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(closestStorage, {visualizePathStyle: {stroke: '#ffaa00'}});
+            } else {
+                var closestStorage = creep.pos.findClosestByRange(FIND_STRUCTURES, {
+                    filter: (structure) => {
+                        return (structure.structureType == STRUCTURE_CONTAINER ||
+                            structure.structureType == STRUCTURE_STORAGE)
+                    }
+                });
+                if (closestStorage) {
+                    console.log('Getting energy from storage: ' + JSON.stringify(closestStorage))
+                    if(creep.withdraw(closestStorage) == ERR_NOT_IN_RANGE) {
+                        creep.moveTo(closestStorage, {visualizePathStyle: {stroke: '#000000'}});
+                    }
+                }
             }
         }
         else {
