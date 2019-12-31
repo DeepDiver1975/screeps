@@ -27,4 +27,17 @@ module.exports.loop = function () {
             roleRepairer.run(creep);
         }
     }
+
+    // debug section below
+    const structs = Game.spawns['Spawn1'].find(FIND_STRUCTURES, {
+        filter: (structure) => {
+            return (structure.structureType == STRUCTURE_EXTENSION ||
+                structure.structureType == STRUCTURE_CONTAINER ||
+                structure.structureType == STRUCTURE_SPAWN ||
+                structure.structureType == STRUCTURE_TOWER)
+        }
+    });
+    for(var name in structs) {
+        console.log(name + ' : ' + JSON.stringify(structs[name].storage))
+    }
 }
