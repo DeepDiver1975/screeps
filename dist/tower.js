@@ -12,7 +12,7 @@ function defend (spawnName) {
     return true
 }
 
-function repair () {
+function repair (spawnName) {
     const room = Game.spawns[spawnName].room
     const towers = room.find(FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_TOWER}});
         for(var name in towers) {
