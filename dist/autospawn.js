@@ -50,7 +50,7 @@ module.exports.popControl = function() {
     if (spawn(repairers, 'repairer', 2, defaultParts)) {
         return
     }
-    if (spawn(transfers, 'transfers', 1, [WORK,CARRY,CARRY,MOVE,MOVE])) {
+    if (spawn(transfers, 'transfer', 1, [WORK,CARRY,CARRY,MOVE,MOVE])) {
         return        
     }
 }
