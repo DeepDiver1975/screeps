@@ -13,14 +13,18 @@ function defend (spawnName) {
 }
 
 function repair () {
-    // TODO: only repair if own capacity is over 50%
-    var percentage = 0.01;
-    var target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
-        filter: (s) => (s.structureType === STRUCTURE_WALL || s.structureType === STRUCTURE_ROAD) &&
-        s.hits / s.hitsMax < percentage
-    });
-    if (target) {
-        tower.repair(target)
+    const towers = room.find(FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_TOWER}});
+        for(var name in towers) {
+            const tower = towsers[name];
+        // TODO: only repair if own capacity is over 50%
+        var percentage = 0.01;
+        var target = tower.pos.findClosestByRange(FIND_STRUCTURES, {
+            filter: (s) => (s.structureType === STRUCTURE_WALL || s.structureType === STRUCTURE_ROAD) &&
+            s.hits / s.hitsMax < percentage
+        });
+        if (target) {
+            tower.repair(target)
+        }
     }
 }
 
