@@ -14,7 +14,9 @@
         if (ret === 0) {
             console.log('Spawning new ' + role + ': ' + newName);
         }
+        return true
     }
+    return false
  }
 
 module.exports.popControl = function() {
@@ -35,9 +37,20 @@ module.exports.popControl = function() {
     var transfers = _.filter(Game.creeps, (creep) => creep.memory.role == 'transfer');
     console.log('Population: ' + harvesters.length + ' H - ' + builders.length + ' B - ' + upgraders.length + ' U - ' + repairers.length + ' R - ' + transfers.length + ' T');
 
-    spawn(harvesters, 'harvester', 6, [WORK,WORK,WORK,CARRY,MOVE,WORK,CARRY,MOVE,MOVE])
-    spawn(builders, 'builder', 3, [WORK,WORK,WORK,CARRY,MOVE,WORK,CARRY,MOVE,MOVE])
-    spawn(upgraders, 'upgrader', 4, [WORK,WORK,WORK,CARRY,MOVE,WORK,CARRY,MOVE,MOVE])
-    spawn(repairers, 'repairer', 2, [WORK,WORK,WORK,CARRY,MOVE,WORK,CARRY,MOVE,MOVE])
-    spawn(transfers, 'transfers', 1, [WORK,WORK,WORK,CARRY,CARRY,MOVE,MOVE])
+    const defaultParts = [CARRY,MOVE,WORK,CARRY,MOVE,MOVE]
+    if (spawn(harvesters, 'harvester', 6, defaultParts)) {
+        return
+    }
+    if (spawn(builders, 'builder', 3, defaultParts)) {
+        return
+    }
+    if (spawn(upgraders, 'upgrader', 4, defaultParts)) {
+        return
+    }
+    if (spawn(repairers, 'repairer', 2, defaultParts)) {
+        return
+    }
+    if (spawn(transfers, 'transfers', 1, [WORK,CARRY,CARRY,MOVE,MOVE])) {
+        return        
+    }
 }
