@@ -15,8 +15,8 @@ function defend (spawnName) {
 function repair (spawnName) {
     const room = Game.spawns[spawnName].room
     const towers = room.find(FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_TOWER}});
-        for(var name in towers) {
-            const tower = towsers[name];
+    for(var name in towers) {
+        const tower = towers[name];
         // TODO: only repair if own capacity is over 50%
         var percentage = 0.01;
         var target = tower.pos.findClosestByRange(FIND_STRUCTURES, {
