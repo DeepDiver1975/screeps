@@ -40,6 +40,6 @@ module.exports.loop = function () {
     });
     for(var name in structs) {
         const s = structs[name]
-        console.log(name + ' (' + s.structureType + '):' + JSON.stringify(s.store) + ' - max:' + s.store.getFreeCapacity())
+        console.log(name + ' (' + s.structureType + '):' + JSON.stringify(s.store) + ' - sum storage: ' + _.sum(s.store) + ' - max:' + s.store.getFreeCapacity())
     }
 }
