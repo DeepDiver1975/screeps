@@ -38,6 +38,7 @@ module.exports.loop = function () {
         }
     });
     for(var name in structs) {
-        console.log(name + ' : ' + JSON.stringify(structs[name].store))
+        const s = structs[name]
+        console.log(name + ' (' + s.structureType + '):' + JSON.stringify(s.store) + ' - max:' + s.store.getFreeCapacity())
     }
 }
