@@ -17,9 +17,11 @@ function repair (spawnName) {
     const towers = room.find(FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_TOWER}});
     for(var name in towers) {
         const tower = towers[name];
-        // TODO: only repair if own capacity is over 50%
-        console.log(tower.energy + ' / ' + tower.energyCapacity)
-
+        // only repair if own capacity is over 50%
+        const energyLevel = tower.energy / tower.energyCapacity
+        if (energyLevel < 0.5) {
+            continue
+        }
         var percentage = 0.01;
         var target = tower.pos.findClosestByRange(FIND_STRUCTURES, {
             filter: (s) => (s.structureType === STRUCTURE_WALL || s.structureType === STRUCTURE_ROAD) &&
