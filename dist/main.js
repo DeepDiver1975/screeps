@@ -38,6 +38,6 @@ module.exports.loop = function () {
         }
     });
     for(var name in structs) {
-        console.log(name + ' : ' + JSON.stringify(structs[name].storage))
+        console.log(name + ' : ' + JSON.stringify(structs[name].store))
     }
 }
