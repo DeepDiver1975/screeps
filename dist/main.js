@@ -10,7 +10,7 @@ const tower = require('tower')
 module.exports.loop = function () {
 
     autospawn.popControl();
-    roadBuilder.run('Spawn1');
+    //roadBuilder.run('Spawn1');
     tower.run('Spawn1')
 
     for(var name in Game.creeps) {
