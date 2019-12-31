@@ -37,7 +37,7 @@ module.exports.popControl = function() {
     var transfers = _.filter(Game.creeps, (creep) => creep.memory.role == 'transfer');
     console.log('Population: ' + harvesters.length + ' H - ' + builders.length + ' B - ' + upgraders.length + ' U - ' + repairers.length + ' R - ' + transfers.length + ' T');
 
-    const defaultParts = [WORK,WORK,CARRY,CARRY,MOVE,MOVE]
+    const defaultParts = [WORK,WORK,WORK,CARRY,CARRY,MOVE,MOVE]
     if (spawn(harvesters, 'harvester', 7, defaultParts)) {
         return
     }
@@ -50,7 +50,7 @@ module.exports.popControl = function() {
     if (spawn(repairers, 'repairer', 3, defaultParts)) {
         return
     }
-    if (spawn(transfers, 'transfer', 2, [WORK,WORK,CARRY,CARRY,MOVE,MOVE])) {
+    if (spawn(transfers, 'transfer', 2, defaultParts)) {
         return        
     }
 }
