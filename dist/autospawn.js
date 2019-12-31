@@ -10,7 +10,7 @@
  function spawn(harvesters, role, limit) {
     if(harvesters.length < limit) {
         var newName = role + '-' + Game.time;
-        const ret = Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE,WORK,CARRY,MOVE], newName, {memory: {role: role}});
+        const ret = Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE,WORK,CARRY,MOVE,MOVE], newName, {memory: {role: role}});
         if (ret === 0) {
             console.log('Spawning new ' + role + ': ' + newName);
         }
@@ -25,7 +25,7 @@ module.exports.popControl = function() {
         }
     }
     const pop = _.keys(Game.creeps).length
-    if (pop > 15) {
+    if (pop > 16) {
         return
     }
     var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
@@ -34,7 +34,7 @@ module.exports.popControl = function() {
     var repairers = _.filter(Game.creeps, (creep) => creep.memory.role == 'repairer');
     console.log('Population: ' + harvesters.length + ' H - ' + builders.length + ' B - ' + upgraders.length + ' U - ' + repairers.length + ' R');
 
-    spawn(harvesters, 'harvester', 5)
+    spawn(harvesters, 'harvester', 6)
     spawn(builders, 'builder', 4)
     spawn(upgraders, 'upgrader', 4)
     spawn(repairers, 'repairer', 2)
