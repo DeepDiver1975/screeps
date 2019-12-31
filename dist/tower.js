@@ -18,6 +18,8 @@ function repair (spawnName) {
     for(var name in towers) {
         const tower = towers[name];
         // TODO: only repair if own capacity is over 50%
+        console.log(tower.enerfy + ' / ' + tower.energyCapacitynumber)
+
         var percentage = 0.01;
         var target = tower.pos.findClosestByRange(FIND_STRUCTURES, {
             filter: (s) => (s.structureType === STRUCTURE_WALL || s.structureType === STRUCTURE_ROAD) &&
