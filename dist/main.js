@@ -29,6 +29,7 @@ module.exports.loop = function () {
     }
 
     // debug section below
+    /*
     const structs = Game.spawns['Spawn1'].room.find(FIND_STRUCTURES, {
         filter: (structure) => {
             return (structure.structureType == STRUCTURE_EXTENSION ||
@@ -42,4 +43,5 @@ module.exports.loop = function () {
         const s = structs[name]
         console.log(name + ' (' + s.structureType + '):' + JSON.stringify(s.store) + ' - sum storage: ' + _.sum(s.store) + ' - max:' + s.store.getFreeCapacity())
     }
+    */
 }
