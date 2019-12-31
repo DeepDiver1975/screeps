@@ -4,7 +4,7 @@ var roleHarvester = {
 
     /** @param {Creep} creep **/
     run: function(creep) {
-	    if(creep.store.getFreeCapacity() > 0) {
+	    if(creep.store.getFreeCapacity() === 0) {
             // search for tombstones as well
             const nextTombstone = creep.pos.findClosestByRange(FIND_TOMBSTONES)
             if (nextTombstone) {
