@@ -8,7 +8,7 @@ var roleHarvester = {
             // search for tombstones as well
             const nextTombstone = creep.pos.findClosestByRange(FIND_TOMBSTONES, {
                 filter: (tombstone) => {
-                    return _.sum(structure.store) > 0
+                    return _.sum(tombstone.store) > 0
                 }
             })
             if (nextTombstone) {
