@@ -38,7 +38,7 @@ module.exports.popControl = function() {
     console.log('Population: ' + harvesters.length + ' H - ' + builders.length + ' B - ' + upgraders.length + ' U - ' + repairers.length + ' R - ' + transfers.length + ' T');
 
 //    const defaultParts = [WORK,WORK,WORK,CARRY,CARRY,MOVE,MOVE]
-    const defaultParts = [WORK,CARRY,MOVE]
+    const defaultParts = [WORK,CARRY,WORK,CARRY,MOVE]
     if (spawn(harvesters, 'harvester', 8, defaultParts)) {
         return
     }
