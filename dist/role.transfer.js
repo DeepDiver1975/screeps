@@ -31,17 +31,23 @@ var roleHarvester = {
             }
         }
         else {
-            var closestStorage = creep.pos.findClosestByRange(FIND_STRUCTURES, {
+            if (!creep.memory.transferTarget) {
+                creep.memory.transferTarget = creep.pos.findClosestByRange(FIND_STRUCTURES, {
                     filter: (structure) => {
                         return (structure.structureType == STRUCTURE_TOWER ||
                             structure.structureType == STRUCTURE_EXTENSION ||
                             structure.structureType == STRUCTURE_SPAWN) && 
                             (structure.energy < structure.energyCapacity || _.sum(structure.store) < structure.store.getCapacity());
                     }
-            });
-            if(closestStorage) {
+                });
+                creep.say('🚆 courier')
+                console.log('Moving with energy to ' + JSON.stringify(creep.memory.transferTarget))
+            }
+            if(creep.memory.transferTarget) {
                 if(creep.transfer(closestStorage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(closestStorage, {visualizePathStyle: {stroke: '#ffffff'}});
+                } else {
+                    creep.memory.transferTarget = null
                 }
             }
         }
