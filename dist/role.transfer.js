@@ -43,7 +43,7 @@ var roleHarvester = {
                 if (closestStorage) {
                     creep.memory.transferTarget = closestStorage.id
                     creep.say('🚆 courier')
-                    console.log('Moving with energy to ' + creep.memory.transferTarge))
+                    console.log('Moving with energy to ' + creep.memory.transferTarget)
                 }
             }
             if(creep.memory.transferTarget) {
