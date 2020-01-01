@@ -12,7 +12,6 @@ var roleHarvester = {
                 }
             })
             if (nextTombstone) {
-                console.log('Tombstone to get energy from: ' + JSON.stringify(nextTombstone))
                 if(creep.withdraw(nextTombstone, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(nextTombstone, {visualizePathStyle: {stroke: '#000000'}});
                 }
