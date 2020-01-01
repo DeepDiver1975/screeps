@@ -40,7 +40,7 @@ module.exports.popControl = function() {
 //    const defaultParts = [WORK,WORK,WORK,CARRY,CARRY,MOVE,MOVE]
 //const defaultParts = [WORK,CARRY,WORK,CARRY,MOVE]
     const defaultParts = [WORK,CARRY,MOVE]
-    if (spawn(harvesters, 'harvester', 2, defaultParts)) {
+    if (spawn(harvesters, 'harvester', 4, defaultParts)) {
         return
     }
     if (spawn(builders, 'builder', 1, defaultParts)) {
