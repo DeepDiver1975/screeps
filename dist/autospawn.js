@@ -43,7 +43,7 @@ module.exports.popControl = function() {
     if (spawn(harvesters, 'harvester', 2, defaultParts)) {
         return
     }
-    if (spawn(transfers, 'transfer', 2, defaultParts)) {
+    if (spawn(transfers, 'transfer', 1, defaultParts)) {
         return        
     }
     if (spawn(builders, 'builder', 1, defaultParts)) {
