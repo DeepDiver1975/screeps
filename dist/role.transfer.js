@@ -37,11 +37,18 @@ var roleHarvester = {
                     filter: (structure) => {
                         return (
                             structure.structureType == STRUCTURE_EXTENSION ||
-                            structure.structureType == STRUCTURE_TOWER ||
                             structure.structureType == STRUCTURE_SPAWN) && 
                             (structure.energy < structure.energyCapacity || _.sum(structure.store) < structure.store.getCapacity());
                     }
                 });
+                if (!closestStorage) {
+                    closestStorage = creep.pos.findClosestByPath(FIND_STRUCTURES, {
+                        filter: (structure) => {
+                            return structure.structureType == STRUCTURE_TOWER && 
+                                (structure.energy < structure.energyCapacity || _.sum(structure.store) < structure.store.getCapacity());
+                        }
+                    });
+                }
                 if (closestStorage) {
                     creep.memory.transferTarget = closestStorage.id
                     creep.say('🚆 courier')
