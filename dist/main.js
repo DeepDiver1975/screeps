@@ -29,6 +29,7 @@ module.exports.loop = function () {
     }
 
     // debug section below
+    /*
     const structs = Game.spawns['Spawn1'].room.find(FIND_STRUCTURES, {
         filter: (structure) => {
             return (structure.structureType == STRUCTURE_CONTAINER || structure.structureType == STRUCTURE_ROAD)
@@ -38,4 +39,5 @@ module.exports.loop = function () {
         const s = structs[name]
         console.log(s.id + ' (' + s.structureType + '):' + s.hits + '/' + s.hitsMax + ' = ' + s.hits / s.hitsMax + ' - ' + (s.hits / s.hitsMax < 0.5))
     }
+    */
 }
