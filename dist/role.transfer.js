@@ -4,6 +4,7 @@ var roleHarvester = {
 
     /** @param {Creep} creep **/
     run: function(creep) {
+        // TODO: add proper state in creep memory - like in builder
 	    if(creep.store[RESOURCE_ENERGY] === 0) {
             // search for tombstones as well
             const nextTombstone = creep.pos.findClosestByRange(FIND_TOMBSTONES, {
@@ -23,7 +24,7 @@ var roleHarvester = {
                     }
                 });
                 if (closestStorage) {
-                    console.log('Getting energy from storage: ' + JSON.stringify(closestStorage))
+                    // console.log('Getting energy from storage: ' + JSON.stringify(closestStorage))
                     if(creep.withdraw(closestStorage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                         creep.moveTo(closestStorage, {visualizePathStyle: {stroke: '#000000'}});
                     }

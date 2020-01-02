@@ -27,20 +27,19 @@ module.exports.popControl = function() {
         }
     }
     const pop = _.keys(Game.creeps).length
-    if (pop > 22) {
+    if (pop > 7) {
         return
     }
     var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
     var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
     var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
-    var repairers = _.filter(Game.creeps, (creep) => creep.memory.role == 'repairer');
     var transfers = _.filter(Game.creeps, (creep) => creep.memory.role == 'transfer');
-    console.log('Population: ' + harvesters.length + ' H - ' + builders.length + ' B - ' + upgraders.length + ' U - ' + repairers.length + ' R - ' + transfers.length + ' T');
+    console.log('Population: ' + harvesters.length + ' H - ' + builders.length + ' B - ' + upgraders.length + ' U - ' + transfers.length + ' T');
 
 //    const defaultParts = [WORK,WORK,WORK,CARRY,CARRY,MOVE,MOVE]
 //const defaultParts = [WORK,CARRY,WORK,CARRY,MOVE]
 //    const courierParts = [CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE]
-const defaultParts = [WORK,CARRY,MOVE]
+    const defaultParts = [WORK,CARRY,MOVE]
     if (spawn(harvesters, 'harvester', 2, defaultParts)) {
         return
     }
@@ -51,9 +50,6 @@ const defaultParts = [WORK,CARRY,MOVE]
         return
     }
     if (spawn(upgraders, 'upgrader', 2, defaultParts)) {
-        return
-    }
-    if (spawn(repairers, 'repairer', 2, defaultParts)) {
         return
     }
 }
