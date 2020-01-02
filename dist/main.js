@@ -36,6 +36,6 @@ module.exports.loop = function () {
     });
     for(var name in structs) {
         const s = structs[name]
-        console.log(name + ' (' + s.structureType + '):' + s.hits + '/' + s.hitsMax + ' = ' + s.hits / s.hitsMax + ' - ' + (s.hits / s.hitsMax < 0.01))
+        console.log(name + ' (' + s.structureType + '):' + s.hits + '/' + s.hitsMax + ' = ' + s.hits / s.hitsMax + ' - ' + (s.hits / s.hitsMax < 0.33))
     }
 }
