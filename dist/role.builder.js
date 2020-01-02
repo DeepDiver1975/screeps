@@ -27,12 +27,12 @@ var roleBuilder = {
 					filter: (s) => (s.structureType === STRUCTURE_ROAD || s.structureType === STRUCTURE_CONTAINER) &&
 					s.hits / s.hitsMax < percentage
 				});
-				if (!target) {
-					target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
-						filter: (s) => (s.structureType === STRUCTURE_WALL) &&
-						s.hits / s.hitsMax < percentage
-					});
-				}
+				// if (!target) {
+				// 	target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
+				// 		filter: (s) => (s.structureType === STRUCTURE_WALL) &&
+				// 		s.hits / s.hitsMax < percentage
+				// 	});
+				// }
 				if (target) {
 					if (creep.repair(target) == ERR_NOT_IN_RANGE) {
 						creep.moveTo(target);
