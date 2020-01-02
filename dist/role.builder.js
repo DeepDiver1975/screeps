@@ -24,7 +24,7 @@ var roleBuilder = {
 				// nothing to build: repair then
 				var percentage = 0.01;
 				var target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
-					filter: (s) => (s.structureType === STRUCTURE_WALL || s.structureType === STRUCTURE_ROAD || s.structureType === STRUCTURE_CONTAINER) &&
+					filter: (s) => (s.structureType === STRUCTURE_ROAD || s.structureType === STRUCTURE_CONTAINER || s.structureType === STRUCTURE_WALL) &&
 					s.hits / s.hitsMax < percentage
 				});
 				if (target) {
