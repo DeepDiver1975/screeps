@@ -24,7 +24,7 @@ var roleHarvester = {
                     }
                 });
                 if (closestStorage) {
-                    // console.log('Getting energy from storage: ' + JSON.stringify(closestStorage))
+                    console.log('Getting energy from storage: ' + JSON.stringify(closestStorage))
                     if(creep.withdraw(closestStorage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                         creep.moveTo(closestStorage, {visualizePathStyle: {stroke: '#000000'}});
                     }
