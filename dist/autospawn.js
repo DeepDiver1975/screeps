@@ -50,7 +50,7 @@ module.exports.popControl = function() {
     if (spawn(builders, 'builder', 1, defaultParts)) {
         return
     }
-    if (spawn(upgraders, 'upgrader', 2, [WORK,WORK,WORK,CARRY,MOVE])) {
+    if (spawn(upgraders, 'upgrader', 3, [WORK,WORK,WORK,WORK,CARRY,MOVE])) {
         return
     }
 }
