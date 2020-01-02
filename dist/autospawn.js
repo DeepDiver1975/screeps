@@ -12,7 +12,7 @@
             console.log('Spawning new ' + role + ': ' + name);
             return true
         } else {
-            console.log('Return on spawning' + role +' / ' + name + ': ' + ret)
+            console.log('Return on spawning ' + role +' / ' + name + ': ' + ret)
         }
     }
     return false
@@ -26,7 +26,7 @@ module.exports.popControl = function() {
         }
     }
     const pop = _.keys(Game.creeps).length
-    if (pop > 7) {
+    if (pop > 8) {
         return
     }
     var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
