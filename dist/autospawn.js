@@ -10,6 +10,8 @@
         const ret = Game.spawns['Spawn1'].spawnCreep(parts, name, {memory: mem});
         if (ret === 0) {
             console.log('Spawning new ' + role + ': ' + name);
+        } else {
+            console.log('Return on spawning' + role +' / ' + name + ': ' + ret)
         }
         return true
     }
