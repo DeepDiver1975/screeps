@@ -27,7 +27,7 @@ module.exports.popControl = function() {
         }
     }
     const pop = _.keys(Game.creeps).length
-    if (pop > 7) {
+    if (pop > 6) {
         return
     }
     var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
