@@ -20,7 +20,7 @@ var roleHarvester = {
                 var closestStorage = creep.pos.findClosestByRange(FIND_STRUCTURES, {
                     filter: (structure) => {
                         return (structure.structureType == STRUCTURE_CONTAINER ||
-                            structure.structureType == STRUCTURE_STORAGE)
+                            structure.structureType == STRUCTURE_STORAGE) && _.sum(structure.store) > 0
                     }
                 });
                 if (closestStorage) {
