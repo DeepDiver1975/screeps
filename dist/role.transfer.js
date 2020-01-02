@@ -7,7 +7,7 @@ var roleHarvester = {
         // TODO: add proper state in creep memory - like in builder
 	    if(creep.store[RESOURCE_ENERGY] === 0) {
             // search for tombstones as well
-            const nextTombstone = creep.pos.findClosestByRange(FIND_TOMBSTONES, {
+            const nextTombstone = creep.pos.findClosestByPath(FIND_TOMBSTONES, {
                 filter: (tombstone) => {
                     return _.sum(tombstone.store) > 0
                 }
@@ -17,14 +17,14 @@ var roleHarvester = {
                     creep.moveTo(nextTombstone, {visualizePathStyle: {stroke: '#000000'}});
                 }
             } else {
-                var closestStorage = creep.pos.findClosestByRange(FIND_STRUCTURES, {
+                var closestStorage = creep.pos.findClosestByPath(FIND_STRUCTURES, {
                     filter: (structure) => {
                         return (structure.structureType == STRUCTURE_CONTAINER ||
-                            structure.structureType == STRUCTURE_STORAGE) && _.sum(structure.store) > 0
+                            structure.structureType == STRUCTURE_STORAGE) && _.sum(structure.store) > creep.store.getCapacity()
                     }
                 });
                 if (closestStorage) {
-                    console.log('Getting energy from storage: ' + JSON.stringify(closestStorage))
+                    // console.log('Getting energy from storage: ' + JSON.stringify(closestStorage))
                     if(creep.withdraw(closestStorage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                         creep.moveTo(closestStorage, {visualizePathStyle: {stroke: '#000000'}});
                     }
@@ -33,7 +33,7 @@ var roleHarvester = {
         }
         else {
             if (!creep.memory.transferTarget) {
-                const closestStorage = creep.pos.findClosestByRange(FIND_STRUCTURES, {
+                const closestStorage = creep.pos.findClosestByPath(FIND_STRUCTURES, {
                     filter: (structure) => {
                         return (structure.structureType == STRUCTURE_TOWER ||
                             structure.structureType == STRUCTURE_EXTENSION ||
