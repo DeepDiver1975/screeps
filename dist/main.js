@@ -29,19 +29,13 @@ module.exports.loop = function () {
     }
 
     // debug section below
-    /*
     const structs = Game.spawns['Spawn1'].room.find(FIND_STRUCTURES, {
         filter: (structure) => {
-            return (structure.structureType == STRUCTURE_EXTENSION ||
-                structure.structureType == STRUCTURE_CONTAINER ||
-                structure.structureType == STRUCTURE_STORAGE ||
-                structure.structureType == STRUCTURE_SPAWN ||
-                structure.structureType == STRUCTURE_TOWER)
+            return (structure.structureType == STRUCTURE_CONTAINER)
         }
     });
     for(var name in structs) {
         const s = structs[name]
-        console.log(name + ' (' + s.structureType + '):' + JSON.stringify(s.store) + ' - sum storage: ' + _.sum(s.store) + ' - max:' + s.store.getFreeCapacity())
+        console.log(name + ' (' + s.structureType + '):' + s.hits + '/' + s.hitsMax + ' = ' + s.hits / s.hitsMax + ' - ' + (s.hits / s.hitsMax < 0.01))
     }
-    */
 }
