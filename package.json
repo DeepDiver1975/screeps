@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@types/screeps": "^3.0.0"
+  }
+}
