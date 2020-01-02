@@ -1,18 +1,15 @@
-/*
- * Module code goes here. Use 'module.exports' to export things:
- * module.exports.thing = 'a thing';
- *
- * You can import it from another modules like this:
- * var mod = require('autospawn');
- * mod.thing == 'a thing'; // true
- */
-
- function spawn(harvesters, role, limit, parts) {
+ function spawn(harvesters, role, limit, parts, name, mem) {
     if(harvesters.length < limit) {
-        var newName = role + '-' + Game.time;
-        const ret = Game.spawns['Spawn1'].spawnCreep(parts, newName, {memory: {role: role}});
+        if (!name) {
+            name = role + '-' + Game.time;
+        }
+        if (!mem) {
+            mem = {}
+        }
+        mem.role = role
+        const ret = Game.spawns['Spawn1'].spawnCreep(parts, name, {memory: mem});
         if (ret === 0) {
-            console.log('Spawning new ' + role + ': ' + newName);
+            console.log('Spawning new ' + role + ': ' + name);
         }
         return true
     }
@@ -41,7 +38,10 @@ module.exports.popControl = function() {
     if (spawn(transfers, 'transfer', 2, courierParts)) {
         return        
     }
-    if (spawn(harvesters, 'harvester', 2, [WORK,WORK,WORK,CARRY,MOVE])) {
+    if (spawn(harvesters, 'harvester', 2, [WORK,WORK,WORK,CARRY,MOVE], 'miner-0')) {
+        return
+    }
+    if (spawn(harvesters, 'harvester', 2, [WORK,WORK,WORK,CARRY,MOVE], 'miner-1')) {
         return
     }
     if (spawn(builders, 'builder', 1, defaultParts)) {

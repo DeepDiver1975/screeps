@@ -5,8 +5,7 @@ var roleHarvester = {
     /** @param {Creep} creep **/
     run: function(creep) {
 	    if(creep.store.getFreeCapacity() > 0) {
-            var sources = creep.room.find(FIND_SOURCES);
-            const index = util.getCreepsSource(creep, sources)
+            const index = creep.memory.source_index
             if(creep.harvest(sources[index]) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(sources[index], {visualizePathStyle: {stroke: '#ffaa00'}});
             }
