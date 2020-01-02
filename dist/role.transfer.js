@@ -39,7 +39,7 @@ var roleHarvester = {
                             structure.structureType == STRUCTURE_EXTENSION ||
                             structure.structureType == STRUCTURE_TOWER ||
                             structure.structureType == STRUCTURE_SPAWN) && 
-                            (structure.energy < structure.energyCapacity || _.sum(structure.store) < 0);
+                            (structure.energy < structure.energyCapacity || _.sum(structure.store) > 0); // structure.store.getCapacity()
                     }
                 });
                 if (closestStorage) {
