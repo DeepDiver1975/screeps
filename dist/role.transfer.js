@@ -20,7 +20,7 @@ var roleHarvester = {
                 var closestStorage = creep.pos.findClosestByPath(FIND_STRUCTURES, {
                     filter: (structure) => {
                         return (structure.structureType == STRUCTURE_CONTAINER ||
-                            structure.structureType == STRUCTURE_STORAGE) && _.sum(structure.store) > creep.store.getCapacity()
+                            structure.structureType == STRUCTURE_STORAGE) && _.sum(structure.store) > 0 // creep.store.getCapacity()
                     }
                 });
                 if (closestStorage) {
@@ -39,7 +39,7 @@ var roleHarvester = {
                             structure.structureType == STRUCTURE_EXTENSION ||
                             structure.structureType == STRUCTURE_TOWER ||
                             structure.structureType == STRUCTURE_SPAWN) && 
-                            (structure.energy < structure.energyCapacity || _.sum(structure.store) > 0); // structure.store.getCapacity()
+                            (structure.energy < structure.energyCapacity || _.sum(structure.store) < structure.store.getCapacity());
                     }
                 });
                 if (closestStorage) {
