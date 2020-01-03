@@ -6,7 +6,7 @@ var util = {
                     structure.structureType == STRUCTURE_EXTENSION)
             }
         }).reduce((sum, struct) => sum + struct.store[RESOURCE_ENERGY], 0)
-        if (storedEnergy < 800) {
+        if (storedEnergy < 400) {
             return
         }
         var closestStorage = creep.pos.findClosestByRange(FIND_STRUCTURES, {
