@@ -33,7 +33,7 @@ var roleHarvester = {
         }
         else {
             if (!creep.memory.transferTarget) {
-                const closestStorage = creep.pos.findClosestByPath(FIND_STRUCTURES, {
+                var closestStorage = creep.pos.findClosestByPath(FIND_STRUCTURES, {
                     filter: (structure) => {
                         return (
                             structure.structureType == STRUCTURE_EXTENSION ||
