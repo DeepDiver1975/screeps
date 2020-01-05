@@ -19,8 +19,7 @@ var roleHarvester = {
             } else {
                 var closestStorage = creep.pos.findClosestByPath(FIND_STRUCTURES, {
                     filter: (structure) => {
-                        return (structure.structureType == STRUCTURE_CONTAINER ||
-                            structure.structureType == STRUCTURE_STORAGE) && _.sum(structure.store) > creep.store.getCapacity()
+                        return structure.structureType == STRUCTURE_CONTAINER && _.sum(structure.store) > creep.store.getCapacity()
                     }
                 });
                 if (closestStorage) {
@@ -45,6 +44,14 @@ var roleHarvester = {
                     closestStorage = creep.pos.findClosestByPath(FIND_STRUCTURES, {
                         filter: (structure) => {
                             return structure.structureType == STRUCTURE_TOWER && 
+                                (structure.energy < structure.energyCapacity || _.sum(structure.store) < structure.store.getCapacity());
+                        }
+                    });
+                }
+                if (!closestStorage) {
+                    closestStorage = creep.pos.findClosestByPath(FIND_STRUCTURES, {
+                        filter: (structure) => {
+                            return structure.structureType == STRUCTURE_STORAGE && 
                                 (structure.energy < structure.energyCapacity || _.sum(structure.store) < structure.store.getCapacity());
                         }
                     });
