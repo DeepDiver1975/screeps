@@ -24,7 +24,7 @@ function repair (spawnName) {
         }
         var percentage = 0.01;
         var target = tower.pos.findClosestByRange(FIND_STRUCTURES, {
-            filter: (s) => (s.structureType === STRUCTURE_WALL || s.structureType === STRUCTURE_ROAD) &&
+            filter: (s) => (s.structureType === STRUCTURE_WALL || s.structureType === STRUCTURE_ROAD || s.structureType === STRUCTURE_RAMPART) &&
             s.hits / s.hitsMax < percentage
         });
         if (target) {
