@@ -40,10 +40,10 @@ module.exports.popControl = function() {
     if (spawn(transfers, 'transfer', 2, courierParts)) {
         return        
     }
-    if (spawn(harvesters, 'harvester', 2, [WORK,WORK,WORK,WORK,CARRY,MOVE], 'miner-0', {source_index:0})) {
+    if (spawn(harvesters, 'harvester', 2, [WORK,WORK,WORK,WORK,WORK,CARRY,MOVE], 'miner-0', {source_index:0})) {
         return
     }
-    if (spawn(harvesters, 'harvester', 2, [WORK,WORK,WORK,WORK,CARRY,MOVE], 'miner-1', {source_index:1})) {
+    if (spawn(harvesters, 'harvester', 2, [WORK,WORK,WORK,WORK,WORK,CARRY,MOVE], 'miner-1', {source_index:1})) {
         return
     }
     if (spawn(builders, 'builder', 1, defaultParts)) {
