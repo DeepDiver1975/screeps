@@ -23,7 +23,7 @@ var roleBuilder = {
 			} else {
 				// nothing to build: repair then
 				var target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
-					filter: (s) => (s.structureType === STRUCTURE_ROAD || s.structureType === STRUCTURE_CONTAINER) &&
+					filter: (s) => (s.structureType === STRUCTURE_ROAD || s.structureType === STRUCTURE_CONTAINER || s.structureType === STRUCTURE_RAMPART) &&
 					s.hits / s.hitsMax < 0.5
 				});
 				if (!target) {
