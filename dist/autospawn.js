@@ -36,7 +36,7 @@ module.exports.popControl = function() {
     console.log('Population: ' + harvesters.length + ' H - ' + builders.length + ' B - ' + upgraders.length + ' U - ' + transfers.length + ' T');
 
     const defaultParts = [WORK,CARRY,MOVE]
-    const courierParts = [CARRY,CARRY,CARRY,CARRY,MOVE]
+    const courierParts = [CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE]
     if (spawn(transfers, 'transfer', 2, courierParts)) {
         return        
     }
