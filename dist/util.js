@@ -22,6 +22,10 @@ var util = {
                 creep.moveTo(closestStorage, {visualizePathStyle: {stroke: '#000000'}});
             }
         }
+    },
+    underAttack: function(room) {
+        const hostiles = room.find(FIND_HOSTILE_CREEPS);
+        return hostiles.length > 0
     }
 };
 

@@ -32,29 +32,40 @@ var roleHarvester = {
         }
         else {
             if (!creep.memory.transferTarget) {
-                var closestStorage = creep.pos.findClosestByPath(FIND_STRUCTURES, {
-                    filter: (structure) => {
-                        return (
-                            structure.structureType == STRUCTURE_EXTENSION ||
-                            structure.structureType == STRUCTURE_SPAWN) && 
-                            (structure.energy < structure.energyCapacity || _.sum(structure.store) < structure.store.getCapacity());
-                    }
-                });
-                if (!closestStorage) {
+                var closestStorage = null
+                // refill towers if we are under attack
+                if (util.underAttack(creep.room)) {
                     closestStorage = creep.pos.findClosestByPath(FIND_STRUCTURES, {
                         filter: (structure) => {
                             return structure.structureType == STRUCTURE_TOWER && 
                                 (structure.energy < structure.energyCapacity || _.sum(structure.store) < structure.store.getCapacity());
                         }
                     });
-                }
-                if (!closestStorage) {
+                } else {
                     closestStorage = creep.pos.findClosestByPath(FIND_STRUCTURES, {
                         filter: (structure) => {
-                            return structure.structureType == STRUCTURE_STORAGE && 
+                            return (
+                                structure.structureType == STRUCTURE_EXTENSION ||
+                                structure.structureType == STRUCTURE_SPAWN) && 
                                 (structure.energy < structure.energyCapacity || _.sum(structure.store) < structure.store.getCapacity());
                         }
                     });
+                    if (!closestStorage) {
+                        closestStorage = creep.pos.findClosestByPath(FIND_STRUCTURES, {
+                            filter: (structure) => {
+                                return structure.structureType == STRUCTURE_TOWER && 
+                                    (structure.energy < structure.energyCapacity || _.sum(structure.store) < structure.store.getCapacity());
+                            }
+                        });
+                    }
+                    if (!closestStorage) {
+                        closestStorage = creep.pos.findClosestByPath(FIND_STRUCTURES, {
+                            filter: (structure) => {
+                                return structure.structureType == STRUCTURE_STORAGE && 
+                                    (structure.energy < structure.energyCapacity || _.sum(structure.store) < structure.store.getCapacity());
+                            }
+                        });
+                    }
                 }
                 if (closestStorage) {
                     creep.memory.transferTarget = closestStorage.id
