@@ -1,12 +1,15 @@
 var util = {
-  loadEnergyToCreep: function (creep) {
+  storedEnergy: function () {
     const storedEnergy = Game.spawns.Spawn1.room.find(FIND_STRUCTURES, {
       filter: (structure) => {
         return (structure.structureType === STRUCTURE_SPAWN ||
-                    structure.structureType === STRUCTURE_EXTENSION)
+                          structure.structureType === STRUCTURE_EXTENSION)
       }
     }).reduce((sum, struct) => sum + struct.store[RESOURCE_ENERGY], 0)
-    if (storedEnergy < 400) {
+    return storedEnergy
+  },
+  loadEnergyToCreep: function (creep) {
+    if (this.storedEnergy() < 400) {
       return
     }
     var closestStorage = creep.pos.findClosestByRange(FIND_STRUCTURES, {

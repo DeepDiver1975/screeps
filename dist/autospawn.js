@@ -6,9 +6,12 @@ function spawn (role, parts, name, mem) {
     mem = {}
   }
   mem.role = role
-  const ret = Game.spawns.Spawn1.spawnCreep(parts, name, { memory: mem })
+  var ret = Game.spawns.Spawn1.spawnCreep(parts, name, { memory: mem })
   if (ret === ERR_NAME_EXISTS) {
     return false
+  }
+  if (ret === ERR_NOT_ENOUGH_ENERGY) {
+    ret = Game.spawns.Spawn1.spawnCreep([WORK, CARRY, MOVE], name, { memory: mem })
   }
   if (ret === OK) {
     console.log('Spawning new ' + role + ': ' + name)
@@ -46,7 +49,7 @@ module.exports.popControl = function () {
   if (containers.length > 2 && spawn('transfer', courierParts, 'courier-1')) {
     return
   }
-  if (spawn('harvester', [WORK, CARRY, MOVE], 'miner-0', { source_index: 0 })) {
+  if (spawn('harvester', [WORK, WORK, WORK, WORK, WORK, CARRY, MOVE], 'miner-0', { source_index: 0 })) {
     return
   }
   if (spawn('harvester', [WORK, CARRY, MOVE], 'miner-1', { source_index: 1 })) {
