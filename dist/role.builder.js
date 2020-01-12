@@ -1,6 +1,30 @@
 var util = require('util')
 
 var roleBuilder = {
+	repairStructures: function(percent, types) {
+		var target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
+			filter: (s) => types.includes(s.structureType) &&
+			s.hits / s.hitsMax < percent
+		});
+		if (target) {
+			if (creep.repair(target) == ERR_NOT_IN_RANGE) {
+				creep.moveTo(target);
+			}
+			return true
+		}
+		return false
+	},
+
+	constructStructures: function() {
+		const closestContructionSite = creep.pos.findClosestByRange(FIND_CONSTRUCTION_SITES);
+		if(closestContructionSite) {
+			if(creep.build(closestContructionSite) == ERR_NOT_IN_RANGE) {
+				creep.moveTo(closestContructionSite, {visualizePathStyle: {stroke: '#ffffff'}});
+			}
+			return true
+		}
+		return false
+	},
 
     /** @param {Creep} creep **/
     run: function(creep) {
@@ -15,28 +39,20 @@ var roleBuilder = {
 	    }
 
 	    if(creep.memory.building) {
-			const closestContructionSite = creep.pos.findClosestByRange(FIND_CONSTRUCTION_SITES);
-            if(closestContructionSite) {
-                if(creep.build(closestContructionSite) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(closestContructionSite, {visualizePathStyle: {stroke: '#ffffff'}});
-                }
-			} else {
-				// nothing to build: repair then
-				var target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
-					filter: (s) => (s.structureType === STRUCTURE_ROAD || s.structureType === STRUCTURE_CONTAINER || s.structureType === STRUCTURE_RAMPART) &&
-					s.hits / s.hitsMax < 0.5
-				});
-				if (!target) {
-					target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
-						filter: (s) => (s.structureType === STRUCTURE_WALL) &&
-						s.hits / s.hitsMax < 0.1
-					});
-				}
-				if (target) {
-					if (creep.repair(target) == ERR_NOT_IN_RANGE) {
-						creep.moveTo(target);
-					}
-				}
+			// emergency repair - this stops building operations
+			if (this.repairStructures(0.1, [STRUCTURE_CONTAINER, STRUCTURE_RAMPART])) {
+				return
+			}
+			// build new structures
+			if (this.constructStructures()) {
+				return
+			}
+			// nothing to build: repair then
+			if (this.repairStructures(0.5, [STRUCTURE_CONTAINER, STRUCTURE_RAMPART, STRUCTURE_ROAD])) {
+				return
+			}
+			if (this.repairStructures(0.1,[STRUCTURE_WALL])) {
+				return
 			}
 	    }
 	    else {
