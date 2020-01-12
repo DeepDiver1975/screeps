@@ -37,10 +37,10 @@ module.exports.popControl = function() {
 
     const defaultParts = [WORK,CARRY,MOVE]
     const courierParts = [CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE]
-    if (spawn(transfers, 'transfer', 2, courierParts)) {
+    if (spawn(transfers, 'transfer', 2, defaultParts)) {
         return        
     }
-    if (spawn(harvesters, 'harvester', 2, [WORK,WORK,WORK,WORK,WORK,CARRY,MOVE], 'miner-0', {source_index:0})) {
+    if (spawn(harvesters, 'harvester', 2, [WORK,CARRY,MOVE], 'miner-0', {source_index:0})) {
         return
     }
     if (spawn(harvesters, 'harvester', 2, [WORK,WORK,WORK,WORK,WORK,CARRY,MOVE], 'miner-1', {source_index:1})) {
