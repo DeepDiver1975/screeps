@@ -1,7 +1,7 @@
 var util = require('util')
 
 var roleBuilder = {
-	repairStructures: function(percent, types) {
+	repairStructures: function(creep, percent, types) {
 		var target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
 			filter: (s) => types.includes(s.structureType) &&
 			s.hits / s.hitsMax < percent
@@ -15,7 +15,7 @@ var roleBuilder = {
 		return false
 	},
 
-	constructStructures: function() {
+	constructStructures: function(creep) {
 		const closestContructionSite = creep.pos.findClosestByRange(FIND_CONSTRUCTION_SITES);
 		if(closestContructionSite) {
 			if(creep.build(closestContructionSite) == ERR_NOT_IN_RANGE) {
@@ -40,18 +40,18 @@ var roleBuilder = {
 
 	    if(creep.memory.building) {
 			// emergency repair - this stops building operations
-			if (this.repairStructures(0.1, [STRUCTURE_CONTAINER, STRUCTURE_RAMPART])) {
+			if (this.repairStructures(creep, 0.1, [STRUCTURE_CONTAINER, STRUCTURE_RAMPART])) {
 				return
 			}
 			// build new structures
-			if (this.constructStructures()) {
+			if (this.constructStructures(creep)) {
 				return
 			}
 			// nothing to build: repair then
-			if (this.repairStructures(0.5, [STRUCTURE_CONTAINER, STRUCTURE_RAMPART, STRUCTURE_ROAD])) {
+			if (this.repairStructures(creep, 0.5, [STRUCTURE_CONTAINER, STRUCTURE_RAMPART, STRUCTURE_ROAD])) {
 				return
 			}
-			if (this.repairStructures(0.1,[STRUCTURE_WALL])) {
+			if (this.repairStructures(creep, 0.1,[STRUCTURE_WALL])) {
 				return
 			}
 	    }
