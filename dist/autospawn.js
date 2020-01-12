@@ -1,19 +1,14 @@
- function spawn(harvesters, role, limit, parts, name, mem) {
-    if(harvesters.length < limit) {
-        if (!name) {
-            name = role + '-' + Game.time;
-        }
-        if (!mem) {
-            mem = {}
-        }
-        mem.role = role
-        const ret = Game.spawns['Spawn1'].spawnCreep(parts, name, {memory: mem});
-        if (ret === 0) {
-            console.log('Spawning new ' + role + ': ' + name);
-            return true
-        } else {
-            console.log('Return on spawning ' + role +' / ' + name + ': ' + ret)
-        }
+ function spawn( role, parts, name, mem) {
+    if (!mem) {
+        mem = {}
+    }
+    mem.role = role
+    const ret = Game.spawns['Spawn1'].spawnCreep(parts, name, {memory: mem});
+    if (ret === 0) {
+        console.log('Spawning new ' + role + ': ' + name);
+        return true
+    } else {
+        console.log('Return on spawning ' + role +' / ' + name + ': ' + ret)
     }
     return false
  }
@@ -26,7 +21,7 @@ module.exports.popControl = function() {
         }
     }
     const pop = _.keys(Game.creeps).length
-    if (pop > 8) {
+    if (pop >= 8) {
         return
     }
     var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
@@ -37,19 +32,28 @@ module.exports.popControl = function() {
 
     const defaultParts = [WORK,CARRY,MOVE]
     const courierParts = [CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE]
-    if (spawn(transfers, 'transfer', 2, defaultParts)) {
+    if (spawn('transfer', courierParts, 'courier-0')) {
         return        
     }
-    if (spawn(harvesters, 'harvester', 2, [WORK,CARRY,MOVE], 'miner-0', {source_index:0})) {
+    if (spawn('transfer', courierParts, 'courier-1')) {
+        return        
+    }
+    if (spawn('harvester', [WORK,WORK,WORK,WORK,WORK,CARRY,MOVE], 'miner-0', {source_index:0})) {
         return
     }
-    if (spawn(harvesters, 'harvester', 2, [WORK,WORK,WORK,WORK,WORK,CARRY,MOVE], 'miner-1', {source_index:1})) {
+    if (spawn('harvester', [WORK,WORK,WORK,WORK,WORK,CARRY,MOVE], 'miner-1', {source_index:1})) {
         return
     }
-    if (spawn(builders, 'builder', 1, defaultParts)) {
+    if (spawn('builder', defaultParts, 'builder-1')) {
         return
     }
-    if (spawn(upgraders, 'upgrader', 3, [WORK,WORK,WORK,WORK,CARRY,MOVE])) {
+    if (spawn('upgrader', [WORK,WORK,WORK,WORK,CARRY,MOVE], 'upgrader-1')) {
+        return
+    }
+    if (spawn('upgrader', [WORK,WORK,WORK,WORK,CARRY,MOVE], 'upgrader-2')) {
+        return
+    }
+    if (spawn('upgrader', [WORK,WORK,WORK,WORK,CARRY,MOVE], 'upgrader-3')) {
         return
     }
 }
