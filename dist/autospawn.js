@@ -1,4 +1,7 @@
 function spawn (role, parts, name, mem) {
+  if (Game.creeps[name]) {
+    return false
+  }
   if (!mem) {
     mem = {}
   }
