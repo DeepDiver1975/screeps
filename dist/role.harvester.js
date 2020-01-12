@@ -2,6 +2,22 @@ var util = require('util')
 
 var roleHarvester = {
 
+    transferTo: function(type) {
+        var closestStorage = creep.pos.findClosestByRange(FIND_STRUCTURES, {
+            filter: (structure) => {
+                return (structure.structureType == type) && 
+                    (structure.energy < structure.energyCapacity || _.sum(structure.store) < structure.store.getCapacity());
+            }
+        });
+        if(closestStorage) {
+            if(creep.transfer(closestStorage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(closestStorage, {visualizePathStyle: {stroke: '#ffffff'}});
+            }
+            return true
+        }
+        return false
+    },
+
     /** @param {Creep} creep **/
     run: function(creep) {
 	    if(creep.store.getFreeCapacity() > 0) {
@@ -12,20 +28,20 @@ var roleHarvester = {
             }
         }
         else {
-            var closestStorage = creep.pos.findClosestByRange(FIND_STRUCTURES, {
-                    filter: (structure) => {
-                        return (structure.structureType == STRUCTURE_EXTENSION ||
-                            structure.structureType == STRUCTURE_CONTAINER ||
-                            structure.structureType == STRUCTURE_STORAGE ||
-                            structure.structureType == STRUCTURE_TOWER ||
-                            structure.structureType == STRUCTURE_SPAWN) && 
-                            (structure.energy < structure.energyCapacity || _.sum(structure.store) < structure.store.getCapacity());
-                    }
-            });
-            if(closestStorage) {
-                if(creep.transfer(closestStorage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(closestStorage, {visualizePathStyle: {stroke: '#ffffff'}});
-                }
+            if (this.transferTo(STRUCTURE_CONTAINER)) {
+                return
+            }
+            if (this.transferTo(STRUCTURE_EXTENSION)) {
+                return
+            }
+            if (this.transferTo(STRUCTURE_SPAWN)) {
+                return
+            }
+            if (this.transferTo(STRUCTURE_TOWER)) {
+                return
+            }
+            if (this.transferTo(STRUCTURE_STORAGE)) {
+                return
             }
         }
 	}
