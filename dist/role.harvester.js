@@ -2,7 +2,7 @@ var util = require('util')
 
 var roleHarvester = {
 
-    transferTo: function(type) {
+    transferTo: function(creep, type) {
         var closestStorage = creep.pos.findClosestByRange(FIND_STRUCTURES, {
             filter: (structure) => {
                 return (structure.structureType === type) && 
@@ -29,19 +29,19 @@ var roleHarvester = {
             }
         }
         else {
-            if (this.transferTo(STRUCTURE_CONTAINER)) {
+            if (this.transferTo(creep, STRUCTURE_CONTAINER)) {
                 return
             }
-            if (this.transferTo(STRUCTURE_EXTENSION)) {
+            if (this.transferTo(creep, STRUCTURE_EXTENSION)) {
                 return
             }
-            if (this.transferTo(STRUCTURE_SPAWN)) {
+            if (this.transferTo(creep, STRUCTURE_SPAWN)) {
                 return
             }
-            if (this.transferTo(STRUCTURE_TOWER)) {
+            if (this.transferTo(creep, STRUCTURE_TOWER)) {
                 return
             }
-            if (this.transferTo(STRUCTURE_STORAGE)) {
+            if (this.transferTo(creep, STRUCTURE_STORAGE)) {
                 return
             }
         }
