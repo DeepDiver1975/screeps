@@ -5,11 +5,12 @@ var roleHarvester = {
     transferTo: function(type) {
         var closestStorage = creep.pos.findClosestByRange(FIND_STRUCTURES, {
             filter: (structure) => {
-                return (structure.structureType == type) && 
+                return (structure.structureType === type) && 
                     (structure.energy < structure.energyCapacity || _.sum(structure.store) < structure.store.getCapacity());
             }
         });
         if(closestStorage) {
+            console.log(`Transfer energy to ${closestStorage.type}`)
             if(creep.transfer(closestStorage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(closestStorage, {visualizePathStyle: {stroke: '#ffffff'}});
             }
