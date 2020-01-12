@@ -1,3 +1,5 @@
+var util = require('util')
+
 function spawn (role, parts, name, mem) {
   if (Game.creeps[name]) {
     return false
@@ -58,13 +60,14 @@ module.exports.popControl = function () {
   if (spawn('builder', defaultParts, 'builder-1')) {
     return
   }
+  const energy = util.storedEnergy()
   if (spawn('upgrader', [WORK, WORK, WORK, WORK, CARRY, MOVE], 'upgrader-0')) {
     return
   }
-  if (spawn('upgrader', [WORK, WORK, WORK, WORK, CARRY, MOVE], 'upgrader-1')) {
+  if (energy > 600 && spawn('upgrader', [WORK, WORK, WORK, WORK, CARRY, MOVE], 'upgrader-1')) {
     return
   }
-  if (spawn('upgrader', [WORK, WORK, WORK, WORK, CARRY, MOVE], 'upgrader-2')) {
+  if (energy > 1200 && spawn('upgrader', [WORK, WORK, WORK, WORK, CARRY, MOVE], 'upgrader-2')) {
 
   }
 }
