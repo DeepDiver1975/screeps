@@ -4,13 +4,16 @@
     }
     mem.role = role
     const ret = Game.spawns['Spawn1'].spawnCreep(parts, name, {memory: mem});
-    if (ret === 0) {
+    if (ret === ERR_NAME_EXISTS) {
+        return false
+    }
+    if (ret === OK) {
         console.log('Spawning new ' + role + ': ' + name);
-        return true
+        return false
     } else {
         console.log('Return on spawning ' + role +' / ' + name + ': ' + ret)
     }
-    return false
+    return true
  }
 
 module.exports.popControl = function() {
