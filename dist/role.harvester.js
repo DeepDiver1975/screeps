@@ -10,7 +10,6 @@ var roleHarvester = {
             }
         });
         if(closestStorage) {
-            console.log(`Transfer energy to ${closestStorage.type}`)
             if(creep.transfer(closestStorage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(closestStorage, {visualizePathStyle: {stroke: '#ffffff'}});
             }
