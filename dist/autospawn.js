@@ -45,10 +45,10 @@ module.exports.popControl = function () {
   const courierParts = [CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE]
   // we need couriers as soon as containers exist
   const containers = Game.spawns.Spawn1.room.find(FIND_STRUCTURES, { filter: (structure) => structure.structureType === STRUCTURE_CONTAINER })
-  if (containers.length > 1 && spawn('transfer', courierParts, 'courier-0')) {
+  if (containers.length >= 1 && spawn('transfer', courierParts, 'courier-0')) {
     return
   }
-  if (containers.length > 2 && spawn('transfer', courierParts, 'courier-1')) {
+  if (containers.length >= 2 && spawn('transfer', courierParts, 'courier-1')) {
     return
   }
   if (spawn('harvester', [WORK, WORK, WORK, WORK, WORK, CARRY, MOVE], 'miner-0', { source_index: 0 })) {
