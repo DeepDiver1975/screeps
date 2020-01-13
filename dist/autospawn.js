@@ -44,7 +44,7 @@ module.exports.popControl = function () {
   const defaultParts = [WORK, CARRY, MOVE]
   const courierParts = [CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE]
   // we need couriers as soon as containers exist
-  const containers = Game.spawns.Spawn1.room.find(STRUCTURE_CONTAINER)
+  const containers = Game.spawns.Spawn1.room.find(FIND_STRUCTURES, { filter: (structure) => structure.structureType === STRUCTURE_CONTAINER })
   if (containers.length > 1 && spawn('transfer', courierParts, 'courier-0')) {
     return
   }
