@@ -24,7 +24,7 @@ var roleHarvester = {
     }
     if (!creep.memory.mining && creep.store.getFreeCapacity() > 0) {
       creep.memory.mining = true
-      creep.say('🔄 mining')
+      creep.say('⛏ mining')
     }
 
     if (creep.memory.mining) {
