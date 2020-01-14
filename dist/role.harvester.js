@@ -18,7 +18,16 @@ var roleHarvester = {
 
   /** @param {Creep} creep **/
   run: function (creep) {
-    if (creep.store.getFreeCapacity() > 0) {
+    if (creep.memory.mining && creep.store.getFreeCapacity() === 0) {
+      creep.memory.mining = false
+      creep.say('📦 deliver')
+    }
+    if (!creep.memory.mining && creep.store.getFreeCapacity() > 0) {
+      creep.memory.mining = true
+      creep.say('🔄 mining')
+    }
+
+    if (creep.memory.mining) {
       const sources = creep.room.find(FIND_SOURCES)
       const index = creep.memory.source_index
       if (creep.harvest(sources[index]) === ERR_NOT_IN_RANGE) {
