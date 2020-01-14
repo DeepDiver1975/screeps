@@ -38,7 +38,7 @@ var roleBuilder = {
 
     if (creep.memory.building) {
       // emergency repair - this stops building operations
-      if (this.repairStructures(creep, 0.1, [STRUCTURE_CONTAINER, STRUCTURE_RAMPART])) {
+      if (this.repairStructures(creep, 0.1, [STRUCTURE_CONTAINER, STRUCTURE_RAMPART, STRUCTURE_ROAD])) {
         return
       }
       // build new structures
