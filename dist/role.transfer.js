@@ -4,8 +4,16 @@ var roleHarvester = {
 
   /** @param {Creep} creep **/
   run: function (creep) {
-    // TODO: add proper state in creep memory - like in builder
-    if (creep.store[RESOURCE_ENERGY] === 0) {
+    if (creep.memory.deliver && creep.store[RESOURCE_ENERGY] === 0) {
+      creep.memory.deliver = false
+      creep.say('🚆 fillup')
+    }
+    if (!creep.memory.deliver && creep.store.getFreeCapacity() === 0) {
+      creep.memory.deliver = true
+      creep.say('🚆 deliver')
+    }
+
+    if (!creep.memory.deliver) {
       // search for tombstones as well
       const nextTombstone = creep.pos.findClosestByPath(FIND_TOMBSTONES, {
         filter: (tombstone) => {
@@ -67,8 +75,6 @@ var roleHarvester = {
         }
         if (closestStorage) {
           creep.memory.transferTarget = closestStorage.id
-          creep.say('🚆 courier')
-          console.log('Moving with energy to ' + creep.memory.transferTarget)
         }
       }
       if (creep.memory.transferTarget) {
